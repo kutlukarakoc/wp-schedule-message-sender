@@ -39,8 +39,9 @@ const MessageForm = () => {
       await sendMessage(values.phoneNumbers, values.message, values.schedule, values.isActive);
       alert("Message scheduled successfully!");
       form.reset();
-    } catch (error) {
-      alert("Error scheduling message!");
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Error scheduling message';
+      alert(errorMessage);
     }
   };
 
@@ -91,7 +92,7 @@ const MessageForm = () => {
                   type="button"
                   variant="outline"
                   onClick={addPhoneNumber}
-                  className="mt-2"
+                  className="mt-2 cursor-pointer"
                 >
                   + Add Number
                 </Button>
@@ -146,7 +147,7 @@ const MessageForm = () => {
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
-                <FormLabel>Active</FormLabel>
+                <FormLabel className="cursor-pointer">Active</FormLabel>
               </FormItem>
             )}
           />
