@@ -1,24 +1,16 @@
 import axios from "axios";
+import { z } from "zod";
+import { formSchema } from "./schemas";
 
-const API_URL = "http://localhost:3000/api"; // Backend URL'yi buraya gir
+const API_URL = process.env.BE_URL;
 
-export const sendMessage = async (
-  phoneNumbers: string[],
-  message: string,
-  schedule: string,
-  isActive: boolean
-) => {
+export const sendMessage = async (values: z.infer<typeof formSchema>) => {
   const response = await fetch(`${API_URL}/messages`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      phoneNumbers,
-      message,
-      schedule,
-      isActive,
-    }),
+    body: JSON.stringify(values),
   });
 
   if (!response.ok) {
