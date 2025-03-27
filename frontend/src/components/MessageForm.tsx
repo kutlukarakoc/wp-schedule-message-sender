@@ -13,15 +13,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import { toast } from "sonner"
 import { sendMessage } from "../lib/api";
 import CronSelector from "./CronSelector";
-
-const formSchema = z.object({
-  phoneNumbers: z.array(z.string().min(10, "Please enter a valid phone number")),
-  message: z.string().min(1, "Message cannot be empty"),
-  schedule: z.string().min(1, "Please select a schedule"),
-  isActive: z.boolean().default(true),
-});
+import { formSchema } from "@/lib/schemas";
 
 const MessageForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,12 +31,12 @@ const MessageForm = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await sendMessage(values.phoneNumbers, values.message, values.schedule, values.isActive);
-      alert("Message scheduled successfully!");
+      await sendMessage(values);
+      toast.success("Message scheduled successfully!")
       form.reset();
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'Error scheduling message';
-      alert(errorMessage);
+      toast.error(errorMessage)
     }
   };
 
