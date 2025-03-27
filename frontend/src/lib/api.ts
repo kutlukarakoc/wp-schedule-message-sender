@@ -2,7 +2,7 @@ import axios from "axios";
 import { z } from "zod";
 import { formSchema } from "./schemas";
 
-const API_URL = process.env.BE_URL;
+const API_URL = import.meta.env.BE_URL;
 
 export const sendMessage = async (values: z.infer<typeof formSchema>) => {
   const response = await fetch(`${API_URL}/messages`, {
