@@ -3,12 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 import { auth } from "./config/firebase.js";
-import connectDB from "./config/db.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import qrRoutes from "./routes/qrRoutes.js";
 
 dotenv.config();
-connectDB();
 
 const app = express();
 const port = process.env.PORT || 3001;
