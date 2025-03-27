@@ -6,7 +6,7 @@ This project is a web application developed for sending automated WhatsApp messa
 
 - Automated WhatsApp message sending
 - User-friendly interface
-- Firebase Authentication
+- Firebase Authentication (via Backend)
 - Message scheduling with cron jobs
 - Multiple phone number support
 - Message sending history tracking
@@ -54,19 +54,19 @@ npm install
 
 4. Set up environment variables:
    - Create `.env` file for backend:
-   ```
-  FIREBASE_PRIVATE_KEY=your_private_key
-  FIREBASE_AUTH_DOMAIN=your_auth_domain
-  FIREBASE_PROJECT_ID=your_project_id
-  FIREBASE_STORAGE_BUCKET=your_storage_bucket
-  FIREBASE_MESSAGING_SENDER_ID=your_messaing_sender_id
-  FIREBASE_APP_ID=your_app_id
-  PORT=3001
-   ```
+```
+FIREBASE_PRIVATE_KEY=your_private_key
+FIREBASE_AUTH_DOMAIN=your_auth_domain
+FIREBASE_PROJECT_ID=your_project_id
+FIREBASE_STORAGE_BUCKET=your_storage_bucket
+FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+FIREBASE_APP_ID=your_app_id
+PORT=3001
+```
    - Create `.env` file for frontend:
-   ```
-   REACT_APP_API_URL=http://localhost:3001
-   ```
+```
+REACT_APP_API_URL=http://localhost:3001
+```
 
 ## 🚀 Running the Application
 
